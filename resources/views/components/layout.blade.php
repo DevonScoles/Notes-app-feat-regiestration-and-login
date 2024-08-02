@@ -6,14 +6,11 @@
 
         <title>Laravel</title>
 
-        <!-- Fonts -->
-        <link rel="preconnect" href="https://fonts.bunny.net">
-        <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
-
-        <!-- Styles -->
-
+        @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
     <body class="antialiased">
         {{ $slot }}
+        {{-- $slot: whatever is inbetween <x-layout> and </x-layout>
+        in the other views will get pushed into the slot variable --}}
     </body>
 </html>
