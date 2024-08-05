@@ -44,7 +44,7 @@ This is my first laravel project showcasing a simple app that lets the user view
 
 ## Usage
 1. Register an account (does not need to be a real email address since this is just a local test)
-2. Navigate to the file `C:\[projectpath]\storage\logs\laravel.log`
+2. Navigate to the file `C:\[projectpath]\storage\logs\laravel.log`  
 NOTE: This is the log file and it's how we are going to locally authenticate
 3. hit `CTRL+click` on the link that's shown on line 19 where it says "Verify Email Address:..."  
 NOTE: If line 19 does not say this then delete the contents of the log file and go back to your browser and hit resend verification link then check the log again
