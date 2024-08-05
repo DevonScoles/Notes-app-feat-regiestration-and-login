@@ -33,10 +33,10 @@ This is my first laravel project showcasing a simple app that lets the user view
     - php (make sure path is in environment variables)
 2. Clone the repository(using your method of choice):
    bash:
-   git clone https://github.com/yourusername/yourproject.git
+   git clone https://github.com/DevonScoles/Notes-app-feat-regiestration-and-login.git
 3. Navigate to the project directory:
     bash:
-    cd yourproject
+    cd Notes-app-feat-registration-and-login
 4. Start the development server:
     php artisan serve
     Visit http://localhost:8000 in your browser.
