@@ -31,21 +31,22 @@ This is my first laravel project showcasing a simple app that lets the user view
     - xampp
     - composer (make sure path is in environment variables)
     - php (make sure path is in environment variables)
-2. Clone the repository(using your method of choice):
-   bash:
-   git clone https://github.com/DevonScoles/Notes-app-feat-regiestration-and-login.git
-3. Navigate to the project directory:
-    bash:
-    cd Notes-app-feat-registration-and-login
-4. Start the development server:
-    php artisan serve
-    Visit http://localhost:8000 in your browser.
+2. Clone the repository(using vscode):
+   https://github.com/DevonScoles/Notes-app-feat-regiestration-and-login.git
+3. Navigate to project in vscode
+4. Open terminal in vscode
+5. Start the development server by typing:
+    `php artisan serve`
+6. Visit http://localhost:8000 in your browser.
+7. Install npm via terminal:
+    `php artisan install`
+
 
 ## Usage
 1. Register an account (does not need to be a real email address since this is just a local test)
-2. Navigate to the file C:\[projectpath]\storage\logs\laravel.log  
+2. Navigate to the file `C:\[projectpath]\storage\logs\laravel.log`
 NOTE: This is the log file and it's how we are going to locally authenticate
-3. hit CTRL+click on the link that's shown on line 19 where it says "Verify Email Address:..."  
+3. hit `CTRL+click` on the link that's shown on line 19 where it says "Verify Email Address:..."  
 NOTE: If line 19 does not say this then delete the contents of the log file and go back to your browser and hit resend verification link then check the log again
 4. Now that you have logged in and verified your account you can start creating notes and viewing them
 5. You can create multiple accounts to see how the app does not allow you to view other accounts' notes
