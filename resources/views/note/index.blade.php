@@ -1,5 +1,5 @@
-<x-layout>
-    <div class="note-container">
+<x-app-layout>
+    <div class="note-container py-12">
         <a href="{{ route('note.create') }}" class="new-note-btn">
             New Note
         </a>
@@ -22,8 +22,10 @@
             @endforeach
         </div>
 
-        {{ $notes->links()}}
-        {{-- Links() generates all the pagniation links and info when using pagination such as $notes->...
-            essentially creates a 1234 list at the bottom that's associated with links to all the pages of notes  --}}
+        <div class="p-6">
+            {{ $notes->links()}}
+            {{-- Links() generates all the pagniation links and info when using pagination such as $notes->...
+                essentially creates a 1234 list at the bottom that's associated with links to all the pages of notes  --}}
+        </div>
     </div>
-</x-layout>
+</x-app-layout>
