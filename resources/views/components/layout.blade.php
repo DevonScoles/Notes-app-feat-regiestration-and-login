@@ -9,6 +9,11 @@
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
     <body class="antialiased">
+        @session('message')
+            <div class="success-message">
+                {{ session('message') }}
+            </div>
+        @endsession
         {{ $slot }}
         {{-- $slot: whatever is inbetween <x-layout> and </x-layout>
         in the other views will get pushed into the slot variable --}}
