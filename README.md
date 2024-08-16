@@ -1,3 +1,5 @@
+![Screenshot of application](https://github.com/DevonScoles/Notes-app-feat-regiestration-and-login/blob/main/notes-home-snapshot.PNG?raw=true)
+
 ## Table of Contents
 - [About This Project](#about-this-project)
 - [Features](#features)
