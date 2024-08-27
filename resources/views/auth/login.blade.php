@@ -33,7 +33,7 @@
         </div>
 
 
-
+        <!-- Forgot pass, login, and make account buttons -->
         <div class="flex items-center justify-end mt-4">
 
             @if (Route::has('password.request'))
@@ -47,7 +47,6 @@
                 {{ __('Log in') }}
             </x-primary-button>
 
-            <!-- Make account button -->
             <x-primary-button class="ms-3">
                 <a href="{{ route('register') }}">
                     {{ __('Make an account') }}
