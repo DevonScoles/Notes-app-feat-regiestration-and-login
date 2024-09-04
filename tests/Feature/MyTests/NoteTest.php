@@ -8,30 +8,45 @@ use App\Models\User;
 use Egulias\EmailValidator\Parser\Comment;
 use Egulias\EmailValidator\Parser\CommentStrategy\LocalComment;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use PHPUnit\Framework\SkippedTest;
 use Tests\TestCase;
 
 class NoteTest extends TestCase
 {
     use RefreshDatabase; //clears the database for each test run
+    protected $userOne, $userTwo;
 
-    protected $user;
-
+    /*
+     *   Setup method for creating test user and test user's notes
+     */
     protected function setUp(): void
     {
         parent::setUp();
 
-        // Create test user
-        $this->user = User::factory()->create([
-            'id' => 1, // Optional, as this is usually auto-incremented by default
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-            'password' => bcrypt('pass123.') // Hash the password
-        ]);
-        //Create notes for user
-        Note::factory(10)->create();
+        // Create 2 test users, need 2 so we can test note viewing authentication
+        $userData = [];
+
+        for ($i = 1; $i <= 2; $i++) {
+            $userData[] = [
+                'name' => 'Test User #' . $i,
+                'email' => 'testemail' . $i . '@test.com',
+                'password' => bcrypt('pass123.'),
+            ];
+        }
+        User::factory()->createMany($userData);
+        $this->userOne = User::find(1); //assign userOne
+        $this->userTwo = User::find(2);//assign userTwo
+
+        //Prefab'd notes for user using different looping method than user prefab loop
+        Note::factory(10)->create()->each(function ($note) {
+            $note->update([
+                'note' => 'this is note #' . $note->id . ' for user #' . $note->user_id,
+            ]);
+        });
+
     }
 
-    public function test_if_user_isnt_logged_in()
+    public function test_response_if_user_isnt_logged_in()
     {
 
         $response = $this->get('/');
@@ -41,11 +56,39 @@ class NoteTest extends TestCase
         $response->assertStatus(200);
     }
 
-    public function test_notes_appear_if_the_user_is_indeed_logged_in_()
+    public function test_note_homepage_if_user_logged_in_()
     {
-        $this->actingAs($this->user);
+        $this->actingAs($this->userOne);
         $response = $this->get('/note');
         $response->assertStatus(200);
-        $response->assertSee('Test User');
+        $response->assertSee('Test User #1');
+    }
+
+    /*
+    Following tests are for CRUD operations
+        ✔ note view when logged in
+        ✔ note view when logged out/different user
+        *note creation
+        *note update
+        *note delete
+    */
+
+    public function test_note_viewability_and_validity()
+    {
+        $this->actingAs($this->userOne);
+        $response = $this->get('/note/10');
+        $response->assertStatus(200);
+        $response->assertSee('this is note #10 for user #1'); //Correct note test
+        $response->assertSee('Edit'); //edit button present test
+        $response->assertSee('Delete'); //delete button present test
+    }
+
+    public function test_unathorized_user()
+    {
+        $this->actingAs($this->userTwo);
+        $response = $this->get('/note/10');
+        $response->assertStatus(403); //verifies that the migration redirects the user if it's not the correct user attempting to access the note
+        $response->assertSee('Forbidden');
+
     }
 }
