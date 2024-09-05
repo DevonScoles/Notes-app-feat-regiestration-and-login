@@ -71,7 +71,7 @@ class NoteTest extends TestCase
         ✔ note view when logged out/different user
         ✔ note creation
         ✔ note update
-        ☐ note delete
+        ✔ note delete
     */
 
     public function test_note_viewability_and_validity()
