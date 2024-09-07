@@ -5,8 +5,6 @@ namespace Tests\Feature;
 // use Illuminate\Foundation\Testing\RefreshDatabase;
 use App\Models\Note;
 use App\Models\User;
-use Egulias\EmailValidator\Parser\Comment;
-use Egulias\EmailValidator\Parser\CommentStrategy\LocalComment;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use PHPUnit\Framework\SkippedTest;
 use Tests\TestCase;
