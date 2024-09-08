@@ -3,25 +3,44 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\User;
-
 
 class SubscriptionController extends Controller
 {
-    public function create(Request $request)
+    public function index()
     {
-        $user = $request->user();
-
-        $paymentMethod = $request->input('payment_method');
-
-        // Attach a payment method to the user
-        $user->createOrGetStripeCustomer();
-        $user->addPaymentMethod($paymentMethod);
-
-        // Create a new subscription
-        $user->newSubscription('default', 'plan-id')
-            ->create($paymentMethod);
-
-        return redirect('/home')->with('success', 'Subscription created successfully!');
+        return to_route('note.index');
     }
+    public function checkout()
+    {
+        \Stripe\Stripe::setApiKey(config('stripe.sk'));
+
+        $session = \Stripe\Checkout\Session::create([
+            'line_items' => [
+                [
+                    'price_data' => [
+                        'currency' => 'usd',
+                        'product_data' => [
+                            'name' => 'notes unlimited',
+                        ],
+                        'recurring' => [
+                            'interval' => 'month', //or 'year' for yearly subscriptions
+                        ],
+                        'unit_amount' => 500
+                    ],
+                    'quantity' => 1,
+                ],
+            ],
+            'mode' => 'subscription',
+            'success_url' => route('success'),
+            'cancel_url' => route('index'),
+        ]);
+
+        return redirect()->away($session->url);
+    }
+
+    public function success()
+    {
+        return to_route('note.index')->with('message', 'Thanks for subscribing!');
+    }
+
 }
