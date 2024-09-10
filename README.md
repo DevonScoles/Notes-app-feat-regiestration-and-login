@@ -14,6 +14,7 @@ This is my first laravel project showcasing a simple app that lets the user view
 
 ## Features
 - User registration and authentication
+- Stripe scubscription
 - Create, read, update, and delete notes
 - User-specific notes (each user can only view their own notes)
 - Simple and clean user interface
@@ -21,8 +22,10 @@ This is my first laravel project showcasing a simple app that lets the user view
 
 ## Technologies Used
 - Laravel
+- Stripe
 - PHP
-- MySQL
+- Cashier
+- sqlite
 - HTML/CSS
 - JavaScript
 - Xampp
@@ -36,11 +39,17 @@ This is my first laravel project showcasing a simple app that lets the user view
 2. Clone the repository(using vscode):
    https://github.com/DevonScoles/Notes-app-feat-regiestration-and-login.git
 3. Navigate to project in vscode
-4. Open terminal in vscode
-5. Start the development server by typing:
+6. Open terminal in vscode
+7. Install composer and artisan
+8. setup the .env file by renaming .env.example to .env
+9. To use the "Premium" button functionality
+    create Stripe account and insert the secret key and publish key in the .env file
+11. Start the development server by typing:
     `php artisan serve`
-6. Visit http://localhost:8000 in your browser.
-7. Install npm via terminal:
+12. Run npm by typing:
+    `npm run dev`
+13. Visit http://localhost:8000 in your browser.
+14. Install npm via terminal:
     `php artisan install`
 
 
