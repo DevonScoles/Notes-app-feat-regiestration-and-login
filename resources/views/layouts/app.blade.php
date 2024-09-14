@@ -31,6 +31,11 @@
 
         <!-- Page Content -->
         <main>
+            @if (session('error'))
+                <div class="alert alert-danger">
+                    {{ session('error') }}
+                </div>
+            @endif
             {{ $slot }}
             {{-- $slot allows us to insert other views onto this same page.
                 So we have the contents of app.blade then pasted at the end is the contents of some view depending on the route --}}

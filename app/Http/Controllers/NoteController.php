@@ -23,6 +23,11 @@ class NoteController extends Controller
      */
     public function create()
     {
+        $user = auth()->user();
+        $notesCount = Note::query()->where('user_id', $user->id)->count();
+        if (!$user->premium && $notesCount >= 3) {
+            return redirect()->back()->with('error', 'You have reached the note limit, purchase a premium subscription to create unlimited notes');
+        }
         return view('note.create');
     }
 

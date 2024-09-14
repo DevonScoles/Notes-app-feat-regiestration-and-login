@@ -20,7 +20,7 @@ class SubscriptionController extends Controller
                     'price_data' => [
                         'currency' => 'usd',
                         'product_data' => [
-                            'name' => 'notes unlimited',
+                            'name' => 'Notes Unlimited',
                         ],
                         'recurring' => [
                             'interval' => 'month', //or 'year' for yearly subscriptions
@@ -40,6 +40,9 @@ class SubscriptionController extends Controller
 
     public function success()
     {
+        $user = auth()->user();
+        $user->premium = true;
+        $user->save();
         return to_route('note.index')->with('message', 'Thanks for subscribing!');
     }
 
