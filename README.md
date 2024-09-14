@@ -9,6 +9,11 @@
 - [License](#license)
 - [Acknowledgements](#acknowledgements)
 
+## Recent Update(s)
+- Premium button in the header
+- cashier/stripe integration
+- user can only create 3 notes with no premium subscription
+
 ## About This Project
 This is my first laravel project showcasing a simple app that lets the user view, store, edit, and delete notes. Most importantly the app features the use of an account system that registers users with an email and password as well as authentication. Restrictions are implemented so that when a user creates an account they cannot view other users' notes. The app uses css and js to be styled. While it's not very flashy building this app taught me the fundamentals of laravell and really engrained how MVC works under the laravel framework.  
 
